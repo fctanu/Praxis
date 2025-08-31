@@ -1,21 +1,97 @@
+import React, { Suspense, lazy, useEffect, useRef } from "react";
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import HowItWorks from "@/components/HowItWorks";
-import Features from "@/components/Features";
-import Pricing from "@/components/Pricing";
-import Footer from "@/components/Footer";
+import Hero from "@/components/Hero"; // keep hero eager (above the fold)
+const HowItWorksImport = () => import("@/components/HowItWorks");
+const FeaturesImport = () => import("@/components/Features");
+const PricingImport = () => import("@/components/Pricing");
+const FooterImport = () => import("@/components/Footer");
+
+const HowItWorks = lazy(HowItWorksImport);
+const Features = lazy(FeaturesImport);
+const Pricing = lazy(PricingImport);
+const Footer = lazy(FooterImport);
+
+// Prefetch hook using IntersectionObserver to start loading chunks slightly before they enter viewport
+function usePrefetch(ref: React.RefObject<HTMLElement | null>, importer: () => Promise<unknown>) {
+  useEffect(() => {
+    if (!ref.current || typeof window === 'undefined') return;
+    const el = ref.current;
+    let triggered = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!triggered && entry.isIntersecting) {
+            triggered = true;
+            importer(); // start fetching chunk
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        // start prefetch when section is within 600px below viewport
+        root: null,
+        rootMargin: '600px 0px',
+        threshold: 0.01,
+      }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [ref, importer]);
+}
 
 const Index = () => {
+  const howRef = useRef<HTMLDivElement | null>(null);
+  const featuresRef = useRef<HTMLDivElement | null>(null);
+  const pricingRef = useRef<HTMLDivElement | null>(null);
+  const footerRef = useRef<HTMLDivElement | null>(null);
+
+  usePrefetch(howRef, HowItWorksImport);
+  usePrefetch(featuresRef, FeaturesImport);
+  usePrefetch(pricingRef, PricingImport);
+  usePrefetch(footerRef, FooterImport);
+
   return (
     <div className="min-h-screen">
       <Header />
       <main>
         <Hero />
-        <HowItWorks />
-        <Features />
-        <Pricing />
+        <Suspense
+          fallback={
+            <div className="py-24 text-center text-muted-foreground">
+              Loading insights…
+            </div>
+          }
+        >
+          <div ref={howRef}><HowItWorks /></div>
+        </Suspense>
+        <Suspense
+          fallback={
+            <div className="py-24 text-center text-muted-foreground">
+              Loading features…
+            </div>
+          }
+        >
+          <div ref={featuresRef}><Features /></div>
+        </Suspense>
+        <Suspense
+          fallback={
+            <div className="py-24 text-center text-muted-foreground">
+              Loading pricing…
+            </div>
+          }
+        >
+          <div ref={pricingRef}><Pricing /></div>
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense
+        fallback={
+          <div className="py-12 text-center text-muted-foreground">
+            Loading footer…
+          </div>
+        }
+      >
+  <div ref={footerRef}><Footer /></div>
+      </Suspense>
     </div>
   );
 };
