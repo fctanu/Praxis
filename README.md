@@ -1,73 +1,59 @@
-# Welcome to your Lovable project
 
-## Project info
+# Praxis
 
-**URL**: https://lovable.dev/projects/d4365fa2-3a40-49c8-b7ec-e2d5f1bd6f10
+Transform any book into actionable insights and practical steps with AI.
 
-## How can I edit this code?
+## Overview
+Praxis is an AI-powered web application that analyzes any book and delivers its core concepts as a concise set of practical, personalized action steps. Designed for learners, professionals, and teams who want to turn knowledge into real-world results—fast.
 
-There are several ways of editing your application.
+## Features
+- Enter any book title and get instant recognition (thousands of books supported)
+- Advanced AI extracts the most actionable insights in seconds
+- Receive a curated list of 5 practical steps for immediate implementation
+- Modern, responsive UI with beautiful animations
+- Built with React, TypeScript, Tailwind CSS, shadcn-ui, and Vite
 
-**Use Lovable**
+## Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d4365fa2-3a40-49c8-b7ec-e2d5f1bd6f10) and start prompting.
+### Prerequisites
+- Node.js (v18 or newer recommended)
+- npm (v9 or newer)
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+### Installation
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repository
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+cd Praxis
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
+Visit [http://localhost:5173](http://localhost:5173) in your browser.
 
-**Edit a file directly in GitHub**
+## Project Structure
+- `src/components/` – UI components (Header, Hero, HowItWorks, Features, Pricing, Footer, etc.)
+- `src/assets/` – Images and static assets (logo, hero image, etc.)
+- `src/pages/` – Main page(s)
+- `public/` – Static files (favicon, manifest, etc.)
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Customization
+- Replace `src/assets/praxis.png` with your own logo for branding.
+- Update theme colors in `src/index.css` and `tailwind.config.ts`.
+- Edit meta tags in `index.html` for SEO and social sharing.
 
-**Use GitHub Codespaces**
+## Deployment
+You can deploy Praxis to any static hosting provider (Vercel, Netlify, GitHub Pages, etc.):
+```sh
+npm run build
+# Deploy the contents of the `dist` folder
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## License
+This project is licensed under the MIT License.
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
+---
+For questions or contributions, open an issue or pull request on GitHub.
 - React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/d4365fa2-3a40-49c8-b7ec-e2d5f1bd6f10) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
