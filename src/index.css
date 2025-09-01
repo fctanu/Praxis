@@ -129,6 +129,16 @@ All colors MUST be HSL.
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
+  /* Enable smooth scrolling for in-page navigation */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Offset anchor scroll for sticky header */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
 }
 
 @layer base {

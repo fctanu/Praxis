@@ -34,7 +34,7 @@ const steps = [
   },
 ];
 
-const HowItWorks = () => {
+const Steps = () => {
   return (
     <section id="steps" className="section-spacing bg-background relative">
       <div className="absolute top-0 left-0 right-0 -translate-y-1/2 pointer-events-none">
@@ -96,4 +96,4 @@ const HowItWorks = () => {
   );
 };
 
-export default HowItWorks;
+export default Steps;

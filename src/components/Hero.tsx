@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen, ListChecks } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-70 mix-blend-normal">
@@ -29,6 +31,7 @@ const Hero = () => {
                 variant="hero"
                 size="lg"
                 className="text-base sm:text-lg px-8 interactive-scale elevation-soft"
+                onClick={() => navigate("/analyze")}
               >
                 Start Free Trial
                 <ArrowRight className="ml-2 h-5 w-5" />

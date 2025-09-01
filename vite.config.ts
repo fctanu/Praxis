@@ -7,11 +7,18 @@ import { visualizer } from "rollup-plugin-visualizer";
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
-    port: 8080,
+    port: 5173,
+    strictPort: true, // fail if 5173 is taken instead of choosing a different one
   },
   plugins: [
     react(),
-    mode === 'analysis' && visualizer({ filename: 'dist/stats.html', open: true, gzipSize: true, brotliSize: true })
+    mode === "analysis" &&
+      visualizer({
+        filename: "dist/stats.html",
+        open: true,
+        gzipSize: true,
+        brotliSize: true,
+      }),
   ].filter(Boolean),
   resolve: {
     alias: {
